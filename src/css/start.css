@@ -1,0 +1,88 @@
+@font-face {
+    font-family: 'EF_jejudoldam';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+    font-family: 'EF_jejudoldam';
+}
+
+body {
+    text-align: center;
+    /* position: absolute; */
+  }
+
+.bgDiv {
+    position:absolute;
+    isolation: isolate;
+
+    /* min-height: calc(var(--vh, 1vh)*100); */
+    height: 100vh;
+    width: 100vw;
+
+    top:0px;
+    left: 0px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('../images/bg_img.gif');
+    background-size: cover;
+    
+    z-index: -1;
+}
+
+.bgDiv::after{
+    content:'';
+    position:absolute;
+    background:black;
+    z-index: -1;
+    inset: 0;
+    opacity: 0.5;
+}
+
+.logoImg {
+    position: inherit;
+    top: 25%;
+    width: 45%;
+}
+
+.startButton {
+    bottom: 13%;
+    position: inherit!important;
+    z-index: 1;
+    width: 80vw;
+    padding: 2%!important;
+    background-color: black;
+    border:none;
+}
+
+.startButton:hover {
+    box-shadow: 0px 4px 20px 0px rgba(0, 0, 0, 0.5);
+}
+
+.startButton .text {
+    font-size: 1.3rem;
+    color: white;
+}
+
+.loginBtnDiv {
+    position: inherit!important;
+    margin: auto;
+    bottom: 13%;
+}
+
+.loginBtn {
+    display: block;
+    margin: 5% auto;
+}
+
+.naver { width: 183px; }
+.google { width: 183px; }
+
+.descDiv p { 
+    color: white;
+    font-size: 1rem;
+}

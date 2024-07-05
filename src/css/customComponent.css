@@ -1,0 +1,56 @@
+/* Menu.js -- start */
+.menuBar div {
+    font-family: 'Pretendard-Regular';
+    color: black;
+    font-size: 3vw;
+}
+
+
+.menuBar div:hover {
+    cursor: pointer;
+}
+
+.menuBar {
+    position: fixed;
+    width: 100vw;
+    height: 10vh;
+
+    display: flex;
+    left: 0;
+    bottom: 0;
+
+    background-color: rgb(255, 255, 255);
+    border-radius: 10% 10% 0% 0%;
+
+    justify-content: space-evenly;
+    align-items: center;
+
+    z-index: 123456789;
+}
+
+.iconImg {
+    max-height: 3vh;
+}
+/* Menu.js -- end */
+/* SearchBox.js -- start */
+
+.searchContainer #search-input {
+    border-radius: 50px;
+    border: 1px solid #f4f4f4;
+    font-size: 0.95rem;
+    margin: 2.5vh auto;
+    padding: 1.5vh 4.5vw;
+    width: 80vw;
+    box-shadow: 0px 4px 18px -8px #2e367c4d;
+}
+
+.searchContainer .search {
+    display: none;
+}
+/* SearchBox.js -- end */
+/* CateMenu.js -- start */
+.cateMenu {
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 3%, rgba(249,255,252,1) 50%, rgba(255,255,255,1) 98%);
+}
+/* CateMenu.js -- end */

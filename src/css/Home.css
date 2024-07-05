@@ -1,0 +1,150 @@
+@font-face {
+    font-family: 'EF_jejudoldam';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-EF@1.0/EF_jejudoldam.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'KCC-Hanbit';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/KCC-Hanbit.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+*{
+    font-family: 'Pretendard-Regular';
+}
+
+.homeBgDiv {
+    /* background-color: white!important; */
+    position:absolute;
+    isolation: isolate;
+
+    min-height: calc(var(--vh, 1vh)*100+12vh);
+    /* height: 100vh; */
+    width: 100vw;
+
+    top:0px;
+    left: 0px;
+    
+    z-index: -1;
+}
+
+.div-100, .div-50{
+    border-radius: 30px;
+    box-shadow: 0px 16px 40px -15px #7090b079;
+    transition-duration: 0.3s;
+}
+
+.div-100 {
+    /* display: block; */
+    background-color: #ffffff;
+    width: 90%;
+    min-height: 100px;
+    margin: 5% auto;
+    
+}
+
+.div-100:active, .div-50:active{
+    box-shadow: none;
+}
+
+
+.div-50 {
+    margin: 1% 1.5%;
+    background: rgb(169, 199, 179);
+    width: 50%;
+    height: 100px;  
+}
+
+/* welcome div */
+
+.welcomeDiv{
+    box-shadow: none!important;
+    background: none!important;
+    height: fit-content;
+}
+
+.welcomeDiv .textDiv {
+    flex:1;
+    height: auto;
+    text-align: left;
+    padding-left: 3%;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    
+    box-shadow: none!important;
+    background: none!important;
+}
+.welcomeDiv p{
+    font-family: 'EF_jejudoldam'!important;
+    margin-top:0.5%;
+    margin-bottom:0.5%;
+}
+.welcomeDiv .userNameP {
+    color:#45866B;
+    font-size: 2.25vh;
+    font-weight: bold;
+}
+
+.welcomeDiv .imgDiv{
+    flex:1;
+    box-shadow: none!important;
+    background: none!important;
+    height: fit-content;
+}
+
+.imgDiv .logoImg{
+    width: 80%;
+    display: block;
+    margin: auto;
+}
+
+.welcomeDiv, .savedDiv{
+    display:flex;
+    justify-content: center;
+    box-shadow: none!important;
+    background: none!important;
+    width: 92%;
+    z-index: -1;
+}
+
+/* 추천여행 */
+
+.desc {
+    margin-top: 35vh;
+    font-size: 5vw;
+}
+
+.planDiv .buttonWrapper {
+    margin: auto;
+    margin-top: 10vh;
+    width: 70%;
+}
+
+.buttonWrapper button {
+    color:white;
+    background-color: black;
+    border: none;
+    /* margin-top: 5vh; */
+    margin: 3vh 3vw;
+    padding: 2vh 5vw;
+}
+
+.buttonWrapper button:hover {
+    box-shadow: 1px 4px 0 rgb(0,0,0,0.5);
+    cursor: pointer;
+}
+
+.buttonWrapper button:active {
+    box-shadow: 1px 4px 0 rgb(0,0,0,0.5);
+    position:relative;
+    top:2px;
+}
