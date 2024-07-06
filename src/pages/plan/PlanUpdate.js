@@ -1,14 +1,10 @@
-// import React, { useState, useRef, useEffect } from 'react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
 /* components */
 import TouchDnd from '../components/updateplan/TouchDnd';
-// import Card from '../components/TouchDnd2';
 
 /* library */
 import styled from 'styled-components';
-// import { DndProvider } from 'react-dnd-multi-backend';
-// import { TouchBackend } from 'react-dnd-touch-backend';
-// import { Container } from '../components/updateplan/Container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFloppyDisk, faMapPin, faTrash, faCalendar } from '@fortawesome/free-solid-svg-icons'
 
@@ -28,14 +24,11 @@ function PlanUpdate() {
         placeRate: 4.2,
     }];
 
-    const [list, setList] = useState(placeArray);
-    // const [list2, setList2] = useState([]);
-    setList(placeArray);
-    // useEffect(()=> {
-    //     // const arr = new Array(15).fill().map((x,i) => i);
-    //     // setList2(arr);
-    //     setList(placeArray);
-    // }, []);
+    const [list, setList] = useState([]);
+
+    useEffect(()=> {
+        setList(placeArray);
+    }, []);
     return (
         <div className='homeBgDiv viewDetailWrapper'>
             <div className='planTitle'>

@@ -69,23 +69,38 @@
     justify-content: space-around;
     align-items: center;
     background-image: url('../images/mkPlanBg_img.gif')!important;
+
+    & .setBudgetWrapper {
+        margin-bottom: 20vh;
+    }
+
+    & .btnWrapper {
+        position: fixed;
+        bottom: 15vh;
+        display: flex;
+        justify-content: space-around;
+        width: 80%;
+        gap: 10%;
+    }
+    & .btnWrapper .mPlanBtn {
+        position: relative;
+    }
 }
 
 .makePlanDiv .labelDiv span{
     display: block;
     font-family: 'KCC-Hanbit';
     color: white;
-    font-size: 1rem;
+    font-size: 1.5rem;
     margin-bottom: 5vh;
 }
 
 
 /* 일정 만들기 */
 .mPlanBtn {
-    position: fixed; 
     width: 80%; 
     border:none;
-    bottom: 15vh;
+    margin-top: 0!important;
 }
 .stage0, .stage1, .stage2, .stage3{
     background-color: #45866B;
