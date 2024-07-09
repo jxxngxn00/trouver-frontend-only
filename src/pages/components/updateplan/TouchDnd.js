@@ -1,65 +1,123 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faGripLines } from '@fortawesome/free-solid-svg-icons';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { DeleteOutlined } from '@ant-design/icons';
 
 export default function TouchDnd({ List, setList }) {
+  const [ isDeleteMode, setIsDeleteMode ] = useState(false);
+  const [ selectedItems, setSelectedItems ] = useState([]);
+
   const handleOnDragEnd = (result) => {
-    if (!result.destination) return;
+    if (!result.destination || isDeleteMode) return;
 
     const items = Array.from(List);
     const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+    setList(items);
+  };
 
-    // Check if the item is dragged to the last position
-    if (result.destination.index === items.length) {
-      // Do not add the item back to the list
-      setList(items);
-    } else {
-      // Add the item back to the new position in the list
-      items.splice(result.destination.index, 0, reorderedItem);
-      setList(items);
-    }
+  const toggleDeleteMode = () => {
+    setIsDeleteMode(!isDeleteMode);
+    setSelectedItems([]);
+  };
+
+  const handleSelectItem = (itemId) => {
+    setSelectedItems((prevSelectItems) => 
+      prevSelectItems.includes(itemId)
+      ? prevSelectItems.filter((id)=> id !== itemId)
+      : [...prevSelectItems, itemId] 
+    );
+  };
+
+  const handleDeleteSelected = () => {
+    setList(List.filter((item) => !selectedItems.includes(item.id)));
+    setSelectedItems([]);
   };
 
   return (
-    <DragDropContext onDragEnd={handleOnDragEnd}>
-      <Droppable droppableId="droppable-1" direction="vertical">
-        {(provided) => (
-          <div {...provided.droppableProps} ref={provided.innerRef}>
-            {List.map((item, idx) => (
-              <Draggable key={item.id} draggableId={item.id.toString()} index={idx}>
-                {(provided) => (
-                  <RouteDiv
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                    className="default"
-                  >
-                    <div className='route'>
-                      <span className='placeName'>{item.placeName}</span>
-                      <div className='detailsWrapper'>
-                        <span className='placeCate'>{item.placeCate}</span>
-                        {item.placeRate ? (
-                          <span className='placeRate'>
-                            <FontAwesomeIcon icon={faStar} style={{color: "#FFD43B"}}/>
-                            {item.placeRate}
-                          </span>
-                        ) : null}
+    <>
+      <DeleteModeWrapper>
+        <span className='date'>9월 7일 목요일</span>
+        <button onClick={() => toggleDeleteMode()}>
+          {isDeleteMode ? '취소' : <DeleteOutlined /> }
+        </button>
+        {isDeleteMode && (
+        <>
+          <button onClick={() => handleDeleteSelected()} disabled={selectedItems.length === 0}>
+            선택된 경유지 삭제 
+          </button>
+        </>
+      )}
+      </DeleteModeWrapper>
+      <DragDropContext onDragEnd={handleOnDragEnd}>
+        <Droppable droppableId="droppable-1" direction="vertical">
+          {(provided) => (
+            <div {...provided.droppableProps} ref={provided.innerRef}>
+              {List.map((item, idx) => (
+                <Draggable key={item.id} draggableId={item.id.toString()} index={idx}>
+                  {(provided) => (
+                    <RouteDiv
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                      className="default"
+                    >
+                      {isDeleteMode && (
+                        <>
+                          <input
+                            type="checkbox"
+                            checked={selectedItems.includes(item.id)}
+                            onChange={() => handleSelectItem(item.id)} />
+                          </>
+                      )}
+                      <div className={isDeleteMode ? 'route deleteMode' : 'route'}>
+                        <span className='placeName'>{item.placeName}</span>
+                        <div className='detailsWrapper'>
+                          <span className='placeCate'>{item.placeCate}</span>
+                          {item.placeRate ? (
+                            <span className='placeRate'>
+                              <FontAwesomeIcon icon={faStar} style={{color: "#FFD43B"}}/>
+                              {item.placeRate}
+                            </span>
+                          ) : null}
+                        </div>
                       </div>
-                    </div>
-                    <FontAwesomeIcon className='gripLines' icon={faGripLines} id="drag"/>
-                  </RouteDiv>
-                )}
-              </Draggable>
-            ))}
-            {provided.placeholder}
-          </div>
-        )}
-      </Droppable>
-    </DragDropContext>
+                      {!isDeleteMode && (
+                        <FontAwesomeIcon className='gripLines' icon={faGripLines} id="drag" />
+                      )}
+                    </RouteDiv>
+                  )}
+                </Draggable>
+              ))}
+              {provided.placeholder}
+            </div>
+          )}
+        </Droppable>
+      </DragDropContext>
+    </>
   );
 }
+const DeleteModeWrapper = styled.div`
+  display: flex;  
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2vw;
+
+  & button {
+    font-size: 0.75rem;
+    white-space: nowrap;
+
+    margin: 0 !important;
+    border: 2px solid #ff6e6e;
+    color: #ff6e6e;
+    background-color: white;
+    border-radius: 30px;
+
+    padding: 1vh 1.9vw;
+  }
+`;
 
 const RouteDiv = styled.div`
   border-radius: 10px;
@@ -70,11 +128,16 @@ const RouteDiv = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 8px;
+
   & .detailsWrapper {
     gap: 0vw!important;
     justify-content: flex-start;
   }
   & .gripLines {
     margin-right: 4.5%;
+  }
+
+  & .deleteMode .detailsWrapper {
+    justify-content: flex-end;
   }
 `;

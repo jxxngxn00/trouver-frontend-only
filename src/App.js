@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 /* import page & components */
 import StartPage from './pages/StartPage'
@@ -18,6 +18,8 @@ import ViewProductDetail from './pages/product/ViewProductDetail';
 import HotSpot from './pages/HotSpot';
 
 import Settings from './pages/Settings';
+import ReserveLog from './pages/setting/ReserveLog';
+import FAQ from './pages/setting/FAQ';
 import Test from './pages/Test';
 
 /* libraries */
@@ -76,6 +78,8 @@ function App() {
             {/* <Route path="/signup" component={SignupForm} />
             <Route path="/profile" component={Profile} />*/}
             <Route path="/settings" Component={Settings} />
+            <Route path='/reserve' Component={ReserveLog}/>
+            <Route path='/faq' Component={FAQ}/>
             <Route path="/test" Component={Test} />
         </Routes>
       </div>

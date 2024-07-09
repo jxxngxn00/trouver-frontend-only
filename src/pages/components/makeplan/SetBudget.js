@@ -9,15 +9,16 @@ import styled from 'styled-components';
 
 function SetBudget(props) {
     const {min, max} = props;
-    const [selectMin, setSelectMin] = useState(min);
-    const [selectMax, setSelectMax] = useState(max);
+
+    const [selectMin, setSelectMin] = useState(min); // eslint-disable-line no-unused-vars
+    const [selectMax, setSelectMax] = useState(max); // eslint-disable-line no-unused-vars
 
     const toastValue = (value) => {
-        let text='';
+        var text; // eslint-disable-line no-unused-vars
         if (typeof value === 'number') {
-            text = `${value}`;
+            text = `${value}`; // eslint-disable-line no-unused-vars
         } else {
-            text = `${value.join(',')}`;
+            text = `${value.join(',')}`; // eslint-disable-line no-unused-vars
             setSelectMin(value[0]);
             setSelectMax(value[1]);
         }

@@ -1,16 +1,13 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-import Menu from '../components/Menu';
-import { mockRequest } from '../components/viewplan/MockRequest';
+import { mockRequest } from './viewplan/MockRequest';
+import test from '../../images/test.jfif'
 import '../../css/plan.css'
 import '../../css/customComponent.css'
-import test from '../../images/test.jfif'
-
-import SearchBox from '../components/SearchBox';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBookmark } from '@fortawesome/free-solid-svg-icons'
 import { DotLoading, InfiniteScroll, List } from 'antd-mobile';
+import styled from 'styled-components';
 
 const InfiniteScrollContent = ({ hasMore }) => {
     return (<>
@@ -21,7 +18,7 @@ const InfiniteScrollContent = ({ hasMore }) => {
     </>);
 };
 
-function ViewPlan() {
+const Contents = () => {
     const navigate = useNavigate();
     const [data, setData] = useState([]);
     const [hasMore, setHasMore] = useState(true);
@@ -37,17 +34,8 @@ function ViewPlan() {
     };
 
     return (
-        <>
-        <Menu />
-        <div className='homeBgDiv ViewPlanBgDiv'>
-            <div className='searchContainer'>
-                <form>
-                    <SearchBox/>
-                </form>
-            </div>
-
-            <div className='contentsWrapper'>
-                <List>
+        <ContentsWrapper className='contentsWrapper'>
+            <List>
                 {data.map((item, index) => (
                     <List.Item key={index}>
                         <div key={index} className='contents' onClick={() => handleNavigate()}>
@@ -68,14 +56,14 @@ function ViewPlan() {
                     </List.Item>
                 ))}
                 </List>
-
+                
                 <InfiniteScroll loadMore={loadMore} hasMore={hasMore}>
                     <InfiniteScrollContent hasMore={hasMore}/>
                 </InfiniteScroll>
-            </div>
-        </div>
-        </>
+        </ContentsWrapper>
     );
-}
-
-export default ViewPlan;
+};
+const ContentsWrapper = styled.div`
+    justify-content: center !important;
+`;
+export default Contents;

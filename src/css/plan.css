@@ -177,7 +177,7 @@
 /* ViewPlan.js -- 일정 목록 보기 */
 
 .ViewPlanBgDiv {
-    position: relative;
+    /* position: relative; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -347,7 +347,7 @@
 .wrapper1 {
     display: flex;
 }
-.wrapper1 span {
+.wrapper1 span, .date {
     width: 85%;
     font-size: 1.5rem;
     font-family: 'Pretendart-ExtraBold';
@@ -365,7 +365,8 @@
     display: flex;
     flex-direction: column;
     gap: 2vh;
-    width: 85%;
+    width: 95%;
+    margin-top: 2vh;
 }
 
 .routeDiv {
@@ -387,6 +388,10 @@
     text-align: left;
     width: 60%;
     margin: 4.5%;
+}
+
+.deleteMode {
+    text-align: right!important;
 }
 
 .route .weather {

@@ -5,9 +5,24 @@ import styled from 'styled-components';
 import profile from '../images/profil.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPercent, faPenNib, faBookmark } from '@fortawesome/free-solid-svg-icons'
+import { Toast } from 'antd-mobile';
+import { ClockCircleOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 
 function Settings(props) {
     const user_name = "도레미";
+    const go = useNavigate();
+    const handleClick = (idx) => {
+        const propsToPass = { message: idx};
+        go('/reserve', { state: propsToPass });
+    }
+
+    const toastShow = () => {
+        Toast.show({
+            icon: (<ClockCircleOutlined/>),
+            content: '아직 준비중인 기능이에요 🤔'
+        })
+    }
     return (
         <>
         <Menu /><div className='homeBgDiv'>
@@ -22,7 +37,10 @@ function Settings(props) {
             </Profile>
             {/* 버튼 */}
             <BtnWrapper>
-                <div className='profileBtn'><FontAwesomeIcon className='icon' icon={faPercent} style={{ color: "#ffffff", }} />쿠폰</div>
+                <div className='profileBtn' onClick={() => toastShow()}>
+                    <FontAwesomeIcon className='icon' icon={faPercent} style={{ color: "#ffffff", }} />
+                    쿠폰
+                </div>
                 <div className='profileBtn'><FontAwesomeIcon className='icon' icon={faPenNib} style={{ color: "#ffffff", }} />리뷰</div>
                 <div className='profileBtn'><FontAwesomeIcon className='icon' icon={faBookmark} style={{ color: "#ffffff", }} />My</div>
             </BtnWrapper>
@@ -30,10 +48,9 @@ function Settings(props) {
             {/* 예약/취소 내역 */}
             <ReserveLog>
                 예약 / 취소 내역
-                <div className='menu'>숙소</div>
-                <div className='menu'>레저 티켓</div>
-                <div className='menu'>맛집</div>
-                <div className='menu'>항공</div>
+                <div className='menu' onClick={() => handleClick(1) }>숙소</div>
+                <div className='menu' onClick={() => handleClick(2) }>레저 티켓</div>
+                <div className='menu' onClick={() => handleClick(3) }>맛집</div>
             </ReserveLog>
             <Line />
             {/* 고객센터 */}
@@ -62,7 +79,7 @@ const Profile = styled.div`
 
     padding: 7vh 0vw 3vh;
     gap: 4vw;
-    & .userImg{ width : 15%; }
+    & .userImg{ width : 25%; }
     & .textInfo {
         display: flex;
         flex-direction: column;

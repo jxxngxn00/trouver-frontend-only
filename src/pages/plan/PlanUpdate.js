@@ -196,18 +196,11 @@ function PlanUpdate() {
 
 
             <div className='routesWrapper'>
-                <div className='wrapper1'>
-                    <span className='date'>9월 7일 목요일</span>
-                </div>
 
                 {/* 여행 장소 경유지 설정 */}
                 <div className='wrapper2'>
-                    <div className='line'/>
                     <div className='wrapper3'>
                         <TouchDnd List={list} setList={setList} />
-                        {/* <DndProvider backend={TouchBackend}>
-                            <Container/>
-                        </DndProvider> */}
                     </div>
                 </div>
 
