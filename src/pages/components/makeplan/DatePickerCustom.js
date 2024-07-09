@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import dayjs from 'dayjs'
 import React, { useState } from 'react';
 
-const defaultRange = [
-    dayjs().toDate(),
-    dayjs().add(2,'day').toDate(),
-];
+// const defaultRange = [
+//     dayjs().toDate(),
+//     dayjs().add(2,'day').toDate(),
+// ];
 
 function DatePickerCustom() {
     const [val, setVal] = useState(() => [
@@ -34,9 +34,7 @@ function DatePickerCustom() {
                 <span>언제 여행을 떠나시나요?</span>
             </div>
             <DateDiv className='dateDiv'>
-                {val ? `${getDateToString(val.toString(), 0)} ~ ${getDateToString(val.toString(), 1)}` 
-                    : <>날짜가 설정되지 않았습니다.</>}
-                {val ? <DateButton onClick={() => {setVisible(true)}}>수정하기</DateButton>
+                {val ? <DateButton onClick={() => {setVisible(true)}}>{getDateToString(val.toString(), 0)} ~ {getDateToString(val.toString(), 1)}</DateButton>
                 : <DateButton onClick={() => {setVisible(true)}}>날짜가 설정되지 않았습니다.</DateButton>}
                 <CalendarPicker
                     title='여행 일정 날짜'
@@ -48,6 +46,7 @@ function DatePickerCustom() {
                     onChange={val => {
                         setVal(val)
                     }}
+                    confirmText='변경하기'
                 />
             </DateDiv>
             

@@ -1,4 +1,5 @@
 import React from 'react';
+import Menu from './components/Menu';
 
 import styled from 'styled-components';
 import profile from '../images/profil.png'
@@ -8,10 +9,11 @@ import { faPercent, faPenNib, faBookmark } from '@fortawesome/free-solid-svg-ico
 function Settings(props) {
     const user_name = "도레미";
     return (
-        <div className='homeBgDiv'>
+        <>
+        <Menu /><div className='homeBgDiv'>
             <Profile>
                 {/* 프로필 */}
-                <img className='userImg' src={profile} alt='기본 프로필'/>
+                <img className='userImg' src={profile} alt='기본 프로필' />
                 <div className='textInfo'>
                     <span id='name'>{user_name}</span>
                     <span id='mbti'>ENFP</span>
@@ -20,11 +22,11 @@ function Settings(props) {
             </Profile>
             {/* 버튼 */}
             <BtnWrapper>
-                <div className='profileBtn'><FontAwesomeIcon className='icon' icon={faPercent} style={{color: "#ffffff",}} />쿠폰</div>
-                <div className='profileBtn'><FontAwesomeIcon className='icon' icon={faPenNib} style={{color: "#ffffff",}} />리뷰</div>
-                <div className='profileBtn'><FontAwesomeIcon className='icon' icon={faBookmark} style={{color: "#ffffff",}} />My</div>
+                <div className='profileBtn'><FontAwesomeIcon className='icon' icon={faPercent} style={{ color: "#ffffff", }} />쿠폰</div>
+                <div className='profileBtn'><FontAwesomeIcon className='icon' icon={faPenNib} style={{ color: "#ffffff", }} />리뷰</div>
+                <div className='profileBtn'><FontAwesomeIcon className='icon' icon={faBookmark} style={{ color: "#ffffff", }} />My</div>
             </BtnWrapper>
-            <Line/>
+            <Line />
             {/* 예약/취소 내역 */}
             <ReserveLog>
                 예약 / 취소 내역
@@ -33,20 +35,21 @@ function Settings(props) {
                 <div className='menu'>맛집</div>
                 <div className='menu'>항공</div>
             </ReserveLog>
-            <Line/>
+            <Line />
             {/* 고객센터 */}
             <Service>
                 고객센터
                 <div className='menu'>자주 묻는 질문</div>
                 <div className='menu'>1:1 문의</div>
             </Service>
-            <Line/>
+            <Line />
             {/* 공지사항 + 앱 설정 */}
             <Etc>
                 <div className='menu'>공지사항</div>
                 <div className='menu'>앱 설정</div>
             </Etc>
         </div>
+        </>
     );
 }
 

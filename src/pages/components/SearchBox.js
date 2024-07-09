@@ -22,7 +22,6 @@ function SearchBox() {
     return (
         <>
             <SearchInput
-
                 type="search"
                 name="input"
                 className='input'

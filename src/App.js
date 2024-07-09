@@ -1,12 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 
 /* import page & components */
 import StartPage from './pages/StartPage'
 
 import Home from './pages/Home';
 import Plan from './pages/components/home/Plan'
-import Menu from './pages/components/Menu';
 
 import MakePlan from './pages/plan/MakePlan';
 import ViewPlan from './pages/plan/ViewPlan';
@@ -20,6 +19,10 @@ import HotSpot from './pages/HotSpot';
 
 import Settings from './pages/Settings';
 import Test from './pages/Test';
+
+/* libraries */
+
+
 /* CSS files + images */
 import './App.css';
 // import logo from './images/trouver_logo.png'
@@ -27,8 +30,7 @@ import './App.css';
 
 /* Hook */
 import { useEffect } from "react";
-// import { useNavigate } from 'react-router-dom'
-// import axios from "axios";
+
 
 /* function -- app */
 function App() {
@@ -52,15 +54,10 @@ function App() {
     document.documentElement.style.setProperty("--vh", `${vh}px`);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [window.innerHeight]);
-
-
-
-
   return (
     // Routes 
     <Router>
       <div className="App">
-      <Menu/>
         <Routes>
             <Route path="/" element={<StartPage/>} />
             <Route path="/home" Component={Home}/>
@@ -69,6 +66,7 @@ function App() {
             <Route path="/makeplan" element={<MakePlan/>} />
             <Route path="/viewplan" element={<ViewPlan/>} />
             <Route path="/viewplandetail" element={<ViewPlanDetail/>}/>
+
             <Route path='/planupdate' element={<PlanUpdate/>}/>
 
             <Route path='/product' Component={Product}/>

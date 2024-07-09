@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import Menu from '../components/Menu';
 import '../../css/plan.css'
 import '../../css/customComponent.css'
 import test from '../../images/test.jfif'
@@ -18,15 +19,17 @@ function ViewPlan() {
 
     const handleNavigate = (e) => {
         e.stopPropagation();
-        console.log('Content clicked');
+        // console.log('Content clicked');
         navigate('/ViewPlanDetail');
     };
 
     return (
+        <>
+        <Menu />
         <div className='homeBgDiv ViewPlanBgDiv'>
             <div className='searchContainer'>
                 <form>
-                    <SearchBox onClick={() => handleClick}/>
+                    <SearchBox onClick={() => handleClick} />
                 </form>
             </div>
 
@@ -52,6 +55,7 @@ function ViewPlan() {
                 ))}
             </div>
         </div>
+        </>
     );
 }
 

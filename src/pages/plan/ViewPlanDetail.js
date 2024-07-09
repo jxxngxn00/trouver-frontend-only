@@ -1,33 +1,71 @@
 import React, { useState } from 'react';
+
+// components
 import DistantCalc from '../components/viewplan/DistantCalc';
 import Dropdown from '../components/viewplan/Dropdown';
+import Menu from '../components/Menu';
+
+// library
 import styled from 'styled-components';
+import { Avatar, Toast, Modal } from 'antd-mobile';
+import { CheckCircleFilled } from '@ant-design/icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faThumbsUp, faBookmark, faCalendarDay, faSquareShareNodes } from '@fortawesome/free-solid-svg-icons'
+
+
+// images
 import mapPicture from '../../images/map.png'
 import dots from '../../images/dots.png'
 import test from '../../images/test.jfif'
 import car from '../../images/icons/car.png'
 import bus from '../../images/icons/bus.png'
 import sun from '../../images/icons/sun.gif'
+
+// hooks
 import { useNavigate } from 'react-router-dom';
 
 function ViewPlanDetail() {
     const [view, setView] = useState(false);
     const go = useNavigate();
 
-    const toggleDropdown = () => {
-        setView(!view);
-    };
+    // 모아보기 저장 완료 모달 팝업
+    const saveConfirm = async () => {
+        const result = await Modal.confirm({
+            header: ( <CheckCircleFilled
+                    style={{ 
+                        fontSize: 64, 
+                        color: 'var(--adm-color-confirm)'
+                    }} /> ),
+            title: '모아보기 저장 완료',
+            content: '모아보기에 담아뒀어요!',
+            confirmText: '모아보기에서 확인하기',
+            cancelText: '더 둘러보기',
+            closeOnMaskClick: true,
+        });
 
+        if (result) { 
+            Toast.show( { content:'모아보기 -- 준비중입니다.', position:'bottom'})
+        } else {
+            Toast.show( { content:'마이페이지의 "모아보기"에서 확인할 수 있어요!', position:'bottom'})
+        }
+    }
     return (
+        <>
+        <Menu/>
         <div className='homeBgDiv viewDetailWrapper'>
             <div className='planTitle'>
                 혼자 떠나는 제주여행
             </div>
-            <div className='planDate'>
-                2022-09-07(시작일) ~ 2022-09-16 (종료일)
-            </div>
+            <PlanInfo>
+                <div className='planDate'>
+                    2022-09-07 ~ 2022-09-16 <br/>
+                    예산 : ₩ 900,000
+                </div>
+                <div className='writerDiv'>
+                    <span>작성자닉네임</span>
+                    <Avatar src=''/>
+                </div>
+            </PlanInfo>
             <div className='dateRadioBtn'>
                 <div className='dateRadioBoxWrapper'>
                     <InfoRadioBoxInput
@@ -204,7 +242,7 @@ function ViewPlanDetail() {
             </div>
 
             <div className='vPlanDetailBtnWrapper'>
-                <div className='vPlanDetailBtn'>
+                <div className='vPlanDetailBtn' onClick={() => saveConfirm()}>
                     <FontAwesomeIcon className='icon' size='2xl' icon={faBookmark} style={{ color: "#c9c9c9" }} />
                     <span>일정 저장</span>
                 </div>
@@ -212,12 +250,13 @@ function ViewPlanDetail() {
                     <FontAwesomeIcon className='icon' size='2xl' icon={faCalendarDay} style={{ color: "#c9c9c9", }} />
                     <span>일정 편집</span>
                 </div>
-                <div className='vPlanDetailBtn'>
+                <div className='vPlanDetailBtn' onClick={() => { Toast.show( {content:'공유하기 -- 준비중입니다.', position:'center'})}}>
                     <FontAwesomeIcon className='icon' size='2xl' icon={faSquareShareNodes} style={{ color: "#c9c9c9", }} />
                     <span>일정 공유</span>
                 </div>
             </div>
         </div>
+        </>
     );
 }
 
@@ -253,4 +292,10 @@ const InfoCheckBoxLabel = styled.label`
     margin-left: 2vw;
 `;
 
+const PlanInfo = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 1vh 0;
+`;
 export default ViewPlanDetail;
