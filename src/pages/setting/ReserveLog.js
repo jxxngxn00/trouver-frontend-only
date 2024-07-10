@@ -7,7 +7,7 @@ import { faBullseye, faFan, faHouseUser, faUtensils } from '@fortawesome/free-so
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Contents from '../components/Contents';
-
+import TopBtnBar from '../components/TopBtnBar';
 // 드롭다운 메뉴 
 const items = [
     {
@@ -53,7 +53,9 @@ function ReserveLog() {
 
     return (
         <StyleDiv className='homeBgDiv ViewPlanBgDiv'>
-            <DropdownDiv>
+            <TopBtnBar />
+            <DropdownDiv className='dropdownDiv'>
+                <div className='title'>예약 / 취소내역</div>
                 <Dropdown className='dropdown'>
                     <Dropdown.Item key='sorter' title={ dropdownVal }>
                         <div style={{ padding:12 }}>
@@ -101,6 +103,15 @@ const TapDiv = styled.div`
 const DropdownDiv = styled.div`
     /* align-items: flex-end !important; */
     width: 100%;
+    margin-top: 7vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & .title { 
+        margin-left: 5vw;
+        font-family: 'Pretendart-ExtraBold';
+        font-size: 1.33rem;
+    }
     & .adm-dropdown-item {
         justify-content: flex-end !important;    
         margin-right: 5vw;

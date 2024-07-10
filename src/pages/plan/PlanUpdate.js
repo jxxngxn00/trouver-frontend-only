@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 /* components */
 import TouchDnd from '../components/updateplan/TouchDnd';
 import CalendarPicker from '../components/updateplan/CalendarPicker';
+import TopBtnBar from '../components/TopBtnBar';
 
 /* library */
 import styled from 'styled-components';
@@ -96,6 +97,7 @@ function PlanUpdate() {
     
     return (
         <div className='homeBgDiv viewDetailWrapper'>
+            <TopBtnBar/>
             <div className='planTitle'>
                 <PlanTitle type='text' defaultValue='혼자 떠나는 제주여행'></PlanTitle>
             </div>

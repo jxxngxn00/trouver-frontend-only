@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import DistantCalc from '../components/viewplan/DistantCalc';
 import Dropdown from '../components/viewplan/Dropdown';
 import Menu from '../components/Menu';
+import TopBtnBar from '../components/TopBtnBar';
 
 // library
 import styled from 'styled-components';
@@ -51,6 +52,7 @@ function ViewPlanDetail() {
     }
     return (
         <>
+        <TopBtnBar/>
         <Menu/>
         <div className='homeBgDiv viewDetailWrapper'>
             <div className='planTitle'>

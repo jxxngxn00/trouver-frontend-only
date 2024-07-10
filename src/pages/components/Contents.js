@@ -65,5 +65,9 @@ const Contents = () => {
 };
 const ContentsWrapper = styled.div`
     justify-content: center !important;
+
+    & .adm-list-item {
+        padding-left: 0 !important;
+    }
 `;
 export default Contents;

@@ -2,7 +2,7 @@ import React from 'react';
 import Menu from './components/Menu';
 
 import styled from 'styled-components';
-import profile from '../images/profil.png'
+import profile from '../images/default_profile.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPercent, faPenNib, faBookmark } from '@fortawesome/free-solid-svg-icons'
 import { Toast } from 'antd-mobile';
@@ -12,6 +12,7 @@ import { useNavigate } from 'react-router-dom';
 function Settings(props) {
     const user_name = "도레미";
     const go = useNavigate();
+    
     const handleClick = (idx) => {
         const propsToPass = { message: idx};
         go('/reserve', { state: propsToPass });
@@ -26,14 +27,15 @@ function Settings(props) {
     return (
         <>
         <Menu /><div className='homeBgDiv'>
-            <Profile>
+            <Profile onClick={() => go('/profile')}>
                 {/* 프로필 */}
-                <img className='userImg' src={profile} alt='기본 프로필' />
+                <div className='imgWrapper'>
+                    <img className='userImg' src={profile} alt='기본 프로필' />
+                </div>
                 <div className='textInfo'>
                     <span id='name'>{user_name}</span>
                     <span id='mbti'>ENFP</span>
                 </div>
-
             </Profile>
             {/* 버튼 */}
             <BtnWrapper>
@@ -56,8 +58,8 @@ function Settings(props) {
             {/* 고객센터 */}
             <Service>
                 고객센터
-                <div className='menu'>자주 묻는 질문</div>
-                <div className='menu'>1:1 문의</div>
+                <div className='menu' onClick={() => go('/faq')}>자주 묻는 질문</div>
+                <div className='menu' onClick={() => go('/qna')}>1:1 문의</div>
             </Service>
             <Line />
             {/* 공지사항 + 앱 설정 */}
@@ -79,7 +81,20 @@ const Profile = styled.div`
 
     padding: 7vh 0vw 3vh;
     gap: 4vw;
-    & .userImg{ width : 25%; }
+    & .imgWrapper{ 
+        position: relative;
+        width : 25vw; 
+        height: 25vw;
+        border-radius: 30px;
+        overflow: hidden;
+        & img { 
+            height: 100%;
+            position : absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
     & .textInfo {
         display: flex;
         flex-direction: column;

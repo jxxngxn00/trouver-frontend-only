@@ -16,12 +16,22 @@ import Product from './pages/Product';
 import ViewProductDetail from './pages/product/ViewProductDetail';
 
 import HotSpot from './pages/HotSpot';
+import ViewHotSpot from './pages/hotspot/ViewHotspot';
+import ViewHotspotDetail from './pages/hotspot/ViewHotspotDetail';
+
 
 import Settings from './pages/Settings';
+
+import Profile from './pages/setting/Profile';
 import ReserveLog from './pages/setting/ReserveLog';
 import FAQ from './pages/setting/FAQ';
-import Test from './pages/Test';
 
+import QnA from './pages/setting/QnA';
+import QnADetail from './pages/setting/QnADetail';
+import QnAInsert from './pages/setting/QnAInsert';
+
+import Test from './pages/Test';
+import ScrollToTop from './ScrollToTop';
 /* libraries */
 
 
@@ -59,6 +69,7 @@ function App() {
   return (
     // Routes 
     <Router>
+      <ScrollToTop/>
       <div className="App">
         <Routes>
             <Route path="/" element={<StartPage/>} />
@@ -75,11 +86,20 @@ function App() {
             <Route path='/viewprodDetail' element={<ViewProductDetail/>}/>
             
             <Route path='/hotspot' Component={HotSpot}/>
-            {/* <Route path="/signup" component={SignupForm} />
-            <Route path="/profile" component={Profile} />*/}
+            <Route path='/viewhotspot' Component={ViewHotSpot}/>
+            <Route path='/viewhotspotdetail' Component={ViewHotspotDetail}/>
+            
+            {/* <Route path="/signup" component={SignupForm} /> */}
             <Route path="/settings" Component={Settings} />
+            <Route path="/profile" element={<Profile/>} />
             <Route path='/reserve' Component={ReserveLog}/>
+
             <Route path='/faq' Component={FAQ}/>
+
+            <Route path='/qna' Component={QnA}/>
+            <Route path='/qnaDetail' Component={QnADetail}/>
+            <Route path='/qnaInsert' Component={QnAInsert}/>
+
             <Route path="/test" Component={Test} />
         </Routes>
       </div>

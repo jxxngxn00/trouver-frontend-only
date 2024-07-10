@@ -7,9 +7,8 @@ import styled from 'styled-components';
 import test from '../../images/test.jfif'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
-import TopBtnBar from '../components/TopBtnBar';
 
-function ViewProductDetail(props) {
+function ViewHotspotDetail(props) {
     /* 이미지 슬라이드 */
     const imageData = [
         {
@@ -94,7 +93,6 @@ function ViewProductDetail(props) {
     return (
         <div className='bgProd homeBgDiv'>
             {/* 뒤로가기 버튼, 검색 버튼, 지도 버튼 */}
-            <TopBtnBar/>
             {/* 이미지 스와이프 */}
             <div className='prodImgSlider'>
                 <Carousel
@@ -207,7 +205,7 @@ const TitleDiv = styled.div`
 const TabPane = styled.div`
     position: -webkit-sticky;
     position: sticky;
-    top: 3rem;
+    top: 0;
     background: white;
     z-index: 1000;
 
@@ -244,4 +242,4 @@ const TabCont = styled.div`
 
 `;
 
-export default ViewProductDetail;
+export default ViewHotspotDetail;

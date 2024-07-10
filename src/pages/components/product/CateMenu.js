@@ -15,7 +15,7 @@ function CateMenu({cate, setCate}) {
 
     return (
         <div className='cateMenu'>
-            <div className='title'><FontAwesomeIcon className='titleIcon' icon={faLayerGroup} />트루버 추천 코스 카테고리</div>
+            <div className='title'><FontAwesomeIcon className='titleIcon' icon={faLayerGroup} />트루버 추천 코스 카테고리{cate}</div>
             <div className='btnWrapper'>
                 {[
                     { icon: faBed, text: '숙소' },
