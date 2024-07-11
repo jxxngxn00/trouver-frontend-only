@@ -4,7 +4,7 @@ import Menu from './components/Menu';
 import styled from 'styled-components';
 import profile from '../images/default_profile.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPercent, faPenNib, faBookmark } from '@fortawesome/free-solid-svg-icons'
+import { faPercent, faPenNib, faHeart } from '@fortawesome/free-solid-svg-icons'
 import { Toast } from 'antd-mobile';
 import { ClockCircleOutlined } from '@ant-design/icons';
 import { useNavigate } from 'react-router-dom';
@@ -44,7 +44,7 @@ function Settings(props) {
                     쿠폰
                 </div>
                 <div className='profileBtn'><FontAwesomeIcon className='icon' icon={faPenNib} style={{ color: "#ffffff", }} />리뷰</div>
-                <div className='profileBtn'><FontAwesomeIcon className='icon' icon={faBookmark} style={{ color: "#ffffff", }} />My</div>
+                <div className='profileBtn'><FontAwesomeIcon className='icon' icon={faHeart} style={{ color: "#ffffff", }} />모아보기</div>
             </BtnWrapper>
             <Line />
             {/* 예약/취소 내역 */}
@@ -81,6 +81,7 @@ const Profile = styled.div`
 
     padding: 7vh 0vw 3vh;
     gap: 4vw;
+
     & .imgWrapper{ 
         position: relative;
         width : 25vw; 

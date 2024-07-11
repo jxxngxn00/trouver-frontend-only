@@ -14,6 +14,7 @@ import PlanUpdate from './pages/plan/PlanUpdate';
 
 import Product from './pages/Product';
 import ViewProductDetail from './pages/product/ViewProductDetail';
+import WritingReview from './pages/product/WritingReview';
 
 import HotSpot from './pages/HotSpot';
 import ViewHotSpot from './pages/hotspot/ViewHotspot';
@@ -31,14 +32,14 @@ import QnADetail from './pages/setting/QnADetail';
 import QnAInsert from './pages/setting/QnAInsert';
 
 import Test from './pages/Test';
+import SearchPage from './pages/SearchPage';
+
+// 페이지 이동시 무조건 맨 위로 스크롤하도록 함
 import ScrollToTop from './ScrollToTop';
-/* libraries */
 
 
 /* CSS files + images */
 import './App.css';
-// import logo from './images/trouver_logo.png'
-
 
 /* Hook */
 import { useEffect } from "react";
@@ -84,6 +85,7 @@ function App() {
 
             <Route path='/product' Component={Product}/>
             <Route path='/viewprodDetail' element={<ViewProductDetail/>}/>
+            <Route path='/makeReview' Component={WritingReview}/>
             
             <Route path='/hotspot' Component={HotSpot}/>
             <Route path='/viewhotspot' Component={ViewHotSpot}/>
@@ -101,6 +103,7 @@ function App() {
             <Route path='/qnaInsert' Component={QnAInsert}/>
 
             <Route path="/test" Component={Test} />
+            <Route path='/search' Component={SearchPage}/>
         </Routes>
       </div>
     </Router>

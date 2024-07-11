@@ -39,7 +39,7 @@ const TopBtnBar = () => {
         <TopBarDiv headercolor={headerColor}>
             <DoubleLeftOutlined className='backBtn icon' onClick={() => handleBackBtn()} />
             <div className='btnDiv'>
-                <SearchOutlined className='searchBtn icon' />
+                <SearchOutlined className='searchBtn icon' onClick={() => go('/search')} />
                 <CalendarOutlined className='calendarBtn icon'/>
             </div>
         </TopBarDiv>

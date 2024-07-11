@@ -6,10 +6,18 @@ import styled from 'styled-components';
 
 import test from '../../images/test.jfif'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
+import { faLocationDot, faBookmark, faCalendarPlus, faPenToSquare, faShareFromSquare } from '@fortawesome/free-solid-svg-icons'
 import TopBtnBar from '../components/TopBtnBar';
+import { CarryOutOutlined, EditOutlined, HeartOutlined, HeartTwoTone, PlusCircleOutlined, ShareAltOutlined } from '@ant-design/icons';
+import { Divider, Toast } from 'antd-mobile';
+import { useNavigate } from 'react-router-dom';
+import UseAnimations from 'react-useanimations';
+import heart from 'react-useanimations/lib/heart';
+import plusToX from 'react-useanimations/lib/plusToX';
 
 function ViewProductDetail(props) {
+    const go = useNavigate();
+
     /* 이미지 슬라이드 */
     const imageData = [
         {
@@ -79,18 +87,37 @@ function ViewProductDetail(props) {
         setCurrTab(index);
         targetRefs.current[index].scrollIntoView({ behavior : 'smooth' });
     };
-    
-    /* bottom popup notification */
-    // const [api, contextHolder] = notification.useNotification();
 
-    // const openNotification = (placement) => {
-    //     api.info({
-    //     message: `Notification ${placement}`,
-    //     description:
-    //         'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
-    //     placement,
-    //     });
-    // };
+    // 모아보기 저장 토글
+    const [saved, setSaved] = useState(false);
+    const handleSaved = () => {
+        if (saved) {
+            Toast.show({
+                icon:(<UseAnimations className='toastIcon' 
+                    strokeColor='white'
+                    fillColor='white' 
+                    animation={plusToX} size={56} 
+                    autoplay
+                    wrapperStyle={{ margin:'auto' }}
+                    />),
+                content:'모아보기에서 해제되었어요!',
+                duration: 1200,
+            });
+        } else {
+            Toast.show({
+                icon:(<UseAnimations className='toastIcon' 
+                    strokeColor='white'
+                    fillColor='white' 
+                    animation={heart} size={56} 
+                    autoplay 
+                    wrapperStyle={{ margin:'auto' }}/>),
+                content:'모아보기에 저장되었어요!',
+                duration: 1200,
+            });
+        }
+        setSaved(!saved)
+    }
+
     return (
         <div className='bgProd homeBgDiv'>
             {/* 뒤로가기 버튼, 검색 버튼, 지도 버튼 */}
@@ -117,12 +144,28 @@ function ViewProductDetail(props) {
                 <span className='title'>제주 신화테마파크</span>
                 <span className='addr'><FontAwesomeIcon icon={faLocationDot} />제주 제주시 노연로 80</span>
                 <span className='price'>178,000원 ~</span>
-                {/* {contextHolder}
-                <Button
-                    type="primary"
-                    onClick={() => openNotification('bottom')}
-                    icon={<BorderBottomOutlined />}
-                    >bottom</Button> */}
+                <Divider/>
+                <ButtonDiv>
+                    <button className='prodBtn' onClick={() => handleSaved()}>
+                        { saved ? (<HeartTwoTone className='icon' twoToneColor='#F64543'/>) : (<HeartOutlined className='icon' />)}
+                        모아보기
+                    </button>
+                    <button className='prodBtn'>
+                        {/* <FontAwesomeIcon className='icon' size='2xl' icon={faCalendarPlus} /> */}
+                        <CarryOutOutlined className='icon' />
+                        일정추가
+                    </button>
+                    <button className='prodBtn' onClick={() => go('/makeReview')}>
+                        <EditOutlined className='icon'/>
+                        {/* <FontAwesomeIcon className='icon' size='2xl' icon={faPenToSquare} /> */}
+                        리뷰쓰기
+                    </button>
+                    <button className='prodBtn'>
+                        <ShareAltOutlined className='icon' />
+                        공유하기
+                    </button>
+                </ButtonDiv>
+                
                 <div className='line'></div>
             </TitleDiv>
             {/* 탭팬 : 업체정보, 상품정보, 상세설명, 리뷰 */}
@@ -196,11 +239,35 @@ const TitleDiv = styled.div`
     & .price { text-align:right; padding-right : 5vw; font-size:1.5rem; }
     & .title { font-size: 2rem!important; }
     & .addr { color : gray; }
-
     & .line {
         width: 100vw;
         height: 1vh;
         background-color: rgb(235 247 242);
+    }
+`;
+
+const ButtonDiv = styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    padding: 0vh 0vw 2vh 0vw;
+    & .prodBtn {
+        width: 23vw;
+        background-color: white;
+
+        display: flex;
+        flex-direction: column;
+        gap: 0.5vh;
+        align-items: center;
+
+        border: none;
+        border-radius: 15px;
+
+        margin-top: 0 !important;
+        font-size: 0.8rem;
+        & .icon {
+            padding-left: 0vw !important;
+            & svg { width: 8vw; height: 8vw; }
+        }
     }
 `;
 

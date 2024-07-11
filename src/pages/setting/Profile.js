@@ -88,6 +88,11 @@ const ProfileDiv = styled.div`
 
     padding: 7vh 0vw 3vh;
     gap: 3vw;
+
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 1234567;
     & .imgWrapper{ 
         position: relative;
         width : 35vw; 

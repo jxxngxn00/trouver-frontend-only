@@ -61,7 +61,7 @@ const QnAInsert = () => {
                 <Picker
                     columns={qnaColumns}
                     value={value}
-                    onConfirm={ (v) => {setValue(v); console.log(v)} }>
+                    onConfirm={ (v) => {setValue(v)}}>
                 { value => value && value.length > 0 ? value[0].label : '유형을 선택하세요.'}
                 </Picker>
             </Form.Item>
