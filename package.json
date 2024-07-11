@@ -2,6 +2,7 @@
   "name": "trouver",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://jxxngxn00.github.io/trouver-frontend-only",
   "proxy": "http://localhost:5000/",
   "dependencies": {
     "@ant-design/icons": "^5.3.7",
@@ -42,7 +43,6 @@
     "react-useanimations": "^2.10.0",
     "styled-components": "^4.4.1"
   },
-  "homepage": "https://jxxngxn00.github.io/trouver-frontend-only/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
