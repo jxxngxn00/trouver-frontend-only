@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/trouver-frontend-only/static/css/main.5c531189.css",
+    "main.js": "/trouver-frontend-only/static/js/main.b444e817.js",
+    "static/media/bg_img.gif": "/trouver-frontend-only/static/media/bg_img.cc6b8d456b911e31ffc9.gif",
+    "static/media/mkPlanBg_img.gif": "/trouver-frontend-only/static/media/mkPlanBg_img.56755e18a53859ed893f.gif",
+    "static/media/map.png": "/trouver-frontend-only/static/media/map.7484bfc99293aa6984f0.png",
+    "static/media/default_profile.png": "/trouver-frontend-only/static/media/default_profile.7f9797918b6f1bba3222.png",
+    "static/media/sun.gif": "/trouver-frontend-only/static/media/sun.d18a368d34f5b3cbffbd.gif",
+    "static/media/test.jfif": "/trouver-frontend-only/static/media/test.571b8efc569fb52f09dd.jfif",
+    "static/media/trouver_logo.png": "/trouver-frontend-only/static/media/trouver_logo.185b740673ffa2c198d6.png",
+    "static/media/logo_big.png": "/trouver-frontend-only/static/media/logo_big.4a9f363e23649af52917.png",
+    "static/media/passport.png": "/trouver-frontend-only/static/media/passport.0f6dfb5fe42ab659506d.png",
+    "static/media/discount.png": "/trouver-frontend-only/static/media/discount.e1e0153297650c8d280d.png",
+    "static/media/hot-deal.png": "/trouver-frontend-only/static/media/hot-deal.220d3f017fb6e67ed658.png",
+    "static/media/user.png": "/trouver-frontend-only/static/media/user.c920752422c11377083e.png",
+    "static/media/btnG_완성형.png": "/trouver-frontend-only/static/media/btnG_완성형.4382736d0fcc19a758c7.png",
+    "index.html": "/trouver-frontend-only/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.5c531189.css",
+    "static/js/main.b444e817.js"
+  ]
+}
