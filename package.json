@@ -42,6 +42,7 @@
     "react-useanimations": "^2.10.0",
     "styled-components": "^4.4.1"
   },
+  "homepage": "https://jxxngxn00.github.io/trouver-frontend-only/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -67,6 +68,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "homepage": "https://jxxngxn00.github.io/trouver-frontend-only/"
+  }
 }

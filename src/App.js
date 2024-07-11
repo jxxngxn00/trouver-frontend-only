@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom';
 
 /* import page & components */
 import StartPage from './pages/StartPage'
@@ -69,44 +69,46 @@ function App() {
   }, [window.innerHeight]);
   return (
     // Routes 
-    <Router>
-      <ScrollToTop/>
-      <div className="App">
-        <Routes>
-            <Route path="/" element={<StartPage/>} />
-            <Route path="/home" Component={Home}/>
-            <Route path="/plan" Component={Plan}/>
+    <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <Router>
+        <ScrollToTop/>
+        <div className="App">
+          <Routes>
+              <Route path="/" element={<StartPage/>} />
+              <Route path="/home" Component={Home}/>
+              <Route path="/plan" Component={Plan}/>
 
-            <Route path="/makeplan" element={<MakePlan/>} />
-            <Route path="/viewplan" element={<ViewPlan/>} />
-            <Route path="/viewplandetail" element={<ViewPlanDetail/>}/>
+              <Route path="/makeplan" element={<MakePlan/>} />
+              <Route path="/viewplan" element={<ViewPlan/>} />
+              <Route path="/viewplandetail" element={<ViewPlanDetail/>}/>
 
-            <Route path='/planupdate' element={<PlanUpdate/>}/>
+              <Route path='/planupdate' element={<PlanUpdate/>}/>
 
-            <Route path='/product' Component={Product}/>
-            <Route path='/viewprodDetail' element={<ViewProductDetail/>}/>
-            <Route path='/makeReview' Component={WritingReview}/>
-            
-            <Route path='/hotspot' Component={HotSpot}/>
-            <Route path='/viewhotspot' Component={ViewHotSpot}/>
-            <Route path='/viewhotspotdetail' Component={ViewHotspotDetail}/>
-            
-            {/* <Route path="/signup" component={SignupForm} /> */}
-            <Route path="/settings" Component={Settings} />
-            <Route path="/profile" element={<Profile/>} />
-            <Route path='/reserve' Component={ReserveLog}/>
+              <Route path='/product' Component={Product}/>
+              <Route path='/viewprodDetail' element={<ViewProductDetail/>}/>
+              <Route path='/makeReview' Component={WritingReview}/>
+              
+              <Route path='/hotspot' Component={HotSpot}/>
+              <Route path='/viewhotspot' Component={ViewHotSpot}/>
+              <Route path='/viewhotspotdetail' Component={ViewHotspotDetail}/>
+              
+              {/* <Route path="/signup" component={SignupForm} /> */}
+              <Route path="/settings" Component={Settings} />
+              <Route path="/profile" element={<Profile/>} />
+              <Route path='/reserve' Component={ReserveLog}/>
 
-            <Route path='/faq' Component={FAQ}/>
+              <Route path='/faq' Component={FAQ}/>
 
-            <Route path='/qna' Component={QnA}/>
-            <Route path='/qnaDetail' Component={QnADetail}/>
-            <Route path='/qnaInsert' Component={QnAInsert}/>
+              <Route path='/qna' Component={QnA}/>
+              <Route path='/qnaDetail' Component={QnADetail}/>
+              <Route path='/qnaInsert' Component={QnAInsert}/>
 
-            <Route path="/test" Component={Test} />
-            <Route path='/search' Component={SearchPage}/>
-        </Routes>
-      </div>
-    </Router>
+              <Route path="/test" Component={Test} />
+              <Route path='/search' Component={SearchPage}/>
+          </Routes>
+        </div>
+      </Router>
+    </BrowserRouter>
   );
 }
 
