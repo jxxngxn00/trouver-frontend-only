@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/trouver-frontend-only/static/css/main.5c531189.css",
-    "main.js": "/trouver-frontend-only/static/js/main.b444e817.js",
+    "main.js": "/trouver-frontend-only/static/js/main.fdb7c648.js",
     "static/media/bg_img.gif": "/trouver-frontend-only/static/media/bg_img.cc6b8d456b911e31ffc9.gif",
     "static/media/mkPlanBg_img.gif": "/trouver-frontend-only/static/media/mkPlanBg_img.56755e18a53859ed893f.gif",
     "static/media/map.png": "/trouver-frontend-only/static/media/map.7484bfc99293aa6984f0.png",
@@ -19,6 +19,6 @@
   },
   "entrypoints": [
     "static/css/main.5c531189.css",
-    "static/js/main.b444e817.js"
+    "static/js/main.fdb7c648.js"
   ]
 }
