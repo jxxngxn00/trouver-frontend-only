@@ -1,26 +1,18 @@
-import React, { useState } from 'react';
-
-// import axios from 'axios';
-// import logo from '../images/trouver_logo.png'
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import Menu from './components/Menu';
-import logo_big from '../images/logo_big.png'
-import '../css/Home.css'
+import logo_big from '../images/logo_big.png';
+import '../css/Home.css';
 import Plan from './components/home/Plan';
 
-function Home(props) {
+const displayBG = (menu) => {
     const userName = '테스트유저';
-    const [menu] = useState("Home");
-    
     switch(menu){
-        case "Plan" : // Plan 메뉴 버튼 클릭시
+        case 1: // Plan 메뉴 버튼 클릭시
+            return <Plan />;
+        default: // default : home
             return (
-                <><Menu /><div className='homeBgDiv'>
-                    <Plan />
-                </div></>
-            );
-        default : // default : home
-            return (
-                <><Menu /><div className='homeBgDiv'>
+                <>
                     <div className='welcomeDiv div-100'>
                         <div className='div-50 textDiv'>
                             <p>어서오세요</p>
@@ -45,9 +37,30 @@ function Home(props) {
                     <div className='feedDiv div-100'> </div>
                     <div className='feedDiv div-100'> </div>
                     <div className='feedDiv div-100'> </div>
-                </div></>
+                </>
             );
-    };
+    }
+};
+
+function Home(props) {
+    const [menu, setMenu] = useState(() => {
+        const savedMenu = localStorage.getItem('activeMenu');
+        return savedMenu !== null ? JSON.parse(savedMenu) : 0;
+    });
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.state && location.state.menu !== undefined) {
+            setMenu(location.state.menu);
+        }
+    }, [location]);
+
+    return (
+        <div className='homeBgDiv'>
+            <Menu menu={menu} setMenu={setMenu} />
+            { displayBG(menu) }
+        </div>
+    );
 }
 
 export default Home;

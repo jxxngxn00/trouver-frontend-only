@@ -126,7 +126,6 @@ const KeywordDiv = styled.div`
     & .tagCheckBoxWrapper {
         display: flex;
         flex-wrap: wrap;
-        padding-left: 10vw;
     }
 
     & .tagCheckBox {

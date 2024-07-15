@@ -6,14 +6,17 @@ import styled from 'styled-components';
 
 import test from '../../images/test.jfif'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLocationDot, faBookmark, faCalendarPlus, faPenToSquare, faShareFromSquare } from '@fortawesome/free-solid-svg-icons'
+import { faLocationDot, faBookmark as filledBookmark } from '@fortawesome/free-solid-svg-icons'
+import { faBookmark } from '@fortawesome/free-regular-svg-icons';
 import TopBtnBar from '../components/TopBtnBar';
-import { CarryOutOutlined, EditOutlined, HeartOutlined, HeartTwoTone, PlusCircleOutlined, ShareAltOutlined } from '@ant-design/icons';
+import { CarryOutOutlined, EditOutlined, ShareAltOutlined } from '@ant-design/icons';
 import { Divider, Toast } from 'antd-mobile';
 import { useNavigate } from 'react-router-dom';
 import UseAnimations from 'react-useanimations';
-import heart from 'react-useanimations/lib/heart';
+import bookmark from 'react-useanimations/lib/bookmark';
 import plusToX from 'react-useanimations/lib/plusToX';
+import Review from '../components/Review';
+import Menu from '../components/Menu';
 
 function ViewProductDetail(props) {
     const go = useNavigate();
@@ -74,7 +77,8 @@ function ViewProductDetail(props) {
         { 
             id: 3,
             title: "리뷰",
-            class: 'review'
+            class: 'review',
+            content: (<Review/>)
         }
     ];
 
@@ -108,10 +112,10 @@ function ViewProductDetail(props) {
                 icon:(<UseAnimations className='toastIcon' 
                     strokeColor='white'
                     fillColor='white' 
-                    animation={heart} size={56} 
+                    animation={bookmark} size={56} 
                     autoplay 
                     wrapperStyle={{ margin:'auto' }}/>),
-                content:'모아보기에 저장되었어요!',
+                content:'책갈피에 저장되었어요!',
                 duration: 1200,
             });
         }
@@ -120,6 +124,7 @@ function ViewProductDetail(props) {
 
     return (
         <div className='bgProd homeBgDiv'>
+            <Menu/>
             {/* 뒤로가기 버튼, 검색 버튼, 지도 버튼 */}
             <TopBtnBar/>
             {/* 이미지 스와이프 */}
@@ -147,7 +152,7 @@ function ViewProductDetail(props) {
                 <Divider/>
                 <ButtonDiv>
                     <button className='prodBtn' onClick={() => handleSaved()}>
-                        { saved ? (<HeartTwoTone className='icon' twoToneColor='#F64543'/>) : (<HeartOutlined className='icon' />)}
+                        { saved ? (<FontAwesomeIcon className='icon' icon={filledBookmark}/>) : (<FontAwesomeIcon className='icon' size="2xl" icon={faBookmark} />)}
                         모아보기
                     </button>
                     <button className='prodBtn'>
@@ -157,7 +162,6 @@ function ViewProductDetail(props) {
                     </button>
                     <button className='prodBtn' onClick={() => go('/makeReview')}>
                         <EditOutlined className='icon'/>
-                        {/* <FontAwesomeIcon className='icon' size='2xl' icon={faPenToSquare} /> */}
                         리뷰쓰기
                     </button>
                     <button className='prodBtn'>
@@ -185,7 +189,6 @@ function ViewProductDetail(props) {
             {tabData.map(item => (
                 <TabCont
                     key={item.id}
-                    // className={isExtended === true ? 'tabCont extend' : 'tabCont'}
                     className={item.class}
                     ref={(el) => (targetRefs.current[item.id] = el)}
                 >
@@ -210,17 +213,11 @@ function ViewProductDetail(props) {
                     {/* 리뷰 */}
                     {item.id ===3 ? (
                         <div>
-                            <h2>리뷰</h2>
-                            <p>리뷰 내용</p>
+                            {item.content}
                         </div>
                     ) : null}
                 </TabCont>
             ))}
-
-                
-            
-
-            {/* 팝업 : 옵션선택 */}
         </div>  
     );
 }
@@ -258,6 +255,7 @@ const ButtonDiv = styled.div`
         flex-direction: column;
         gap: 0.5vh;
         align-items: center;
+        justify-content: space-between;
 
         border: none;
         border-radius: 15px;
@@ -266,8 +264,8 @@ const ButtonDiv = styled.div`
         font-size: 0.8rem;
         & .icon {
             padding-left: 0vw !important;
-            & svg { width: 8vw; height: 8vw; }
         }
+        & svg { width: 8vw; height: 8vw; }
     }
 `;
 

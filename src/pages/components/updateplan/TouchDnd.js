@@ -83,6 +83,11 @@ export default function TouchDnd({ List, setList }) {
                             </span>
                           ) : null}
                         </div>
+                        {!isDeleteMode && (
+                          <div className='comment'>
+                            <input type='text' placeholder='테스터님 만의 특별한 팁을 적어주세요!(선택)'/>
+                          </div>
+                        )}
                       </div>
                       {!isDeleteMode && (
                         <FontAwesomeIcon className='gripLines' icon={faGripLines} id="drag" />
@@ -139,5 +144,12 @@ const RouteDiv = styled.div`
 
   & .deleteMode .detailsWrapper {
     justify-content: flex-end;
+  }
+
+  & .comment input {
+    width: 67vw;
+    height: 5vh;
+    /* border: none; */
+    border-width: 0 0 1px;
   }
 `;

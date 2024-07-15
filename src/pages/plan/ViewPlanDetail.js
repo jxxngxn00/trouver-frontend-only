@@ -29,7 +29,7 @@ function ViewPlanDetail() {
     const [view, setView] = useState(false);
     const go = useNavigate();
 
-    // 모아보기 저장 완료 모달 팝업
+    // 책갈피 저장 완료 모달 팝업
     const saveConfirm = async () => {
         const result = await Modal.confirm({
             header: ( <CheckCircleFilled
@@ -37,17 +37,17 @@ function ViewPlanDetail() {
                         fontSize: 64, 
                         color: 'var(--adm-color-confirm)'
                     }} /> ),
-            title: '모아보기 저장 완료',
-            content: '모아보기에 담아뒀어요!',
-            confirmText: '모아보기에서 확인하기',
+            title: '책갈피 저장 완료',
+            content: '책갈피에 담아뒀어요!',
+            confirmText: '책갈피에서 확인하기',
             cancelText: '더 둘러보기',
             closeOnMaskClick: true,
         });
 
         if (result) { 
-            Toast.show( { content:'모아보기 -- 준비중입니다.', position:'bottom'})
+            Toast.show( { content:'책갈피 -- 준비중입니다.', position:'bottom'})
         } else {
-            Toast.show( { content:'마이페이지의 "모아보기"에서 확인할 수 있어요!', position:'bottom'})
+            Toast.show( { content:'마이페이지의 "책갈피"에서 확인할 수 있어요!', position:'bottom'})
         }
     }
     return (
@@ -55,9 +55,9 @@ function ViewPlanDetail() {
         <TopBtnBar/>
         <Menu/>
         <div className='homeBgDiv viewDetailWrapper'>
-            <div className='planTitle'>
+            <PlanTitle className='planTitle'>
                 혼자 떠나는 제주여행
-            </div>
+            </PlanTitle>
             <PlanInfo>
                 <div className='planDate'>
                     2022-09-07 ~ 2022-09-16 <br/>
@@ -171,6 +171,12 @@ function ViewPlanDetail() {
                             </div>
                         </div>
 
+                        <div className='routeDiv commentDiv'>
+                            <span> 이용자님 만의 Tip!</span>
+                            <span className='content'>웨이팅 10분에서 15분정도 있어용!!!</span>
+                        </div>
+                        
+
                         <div className='moveInfoWrapper'>
                             <DistantCalc />
                             <span className='moveInfo'><img src={car} alt='car icon' />999km</span>
@@ -205,7 +211,7 @@ function ViewPlanDetail() {
             </div>
 
             <div className='trouverRecomm'>
-                <span><FontAwesomeIcon icon={faThumbsUp} />트루버의 추천을 받아보세요 </span>
+                <RecommTitle className='title'><FontAwesomeIcon icon={faThumbsUp} />트루버의 추천을 받아보세요 </RecommTitle>
                 <div className='imgSlider'>
                     <div className='trouverRecommDetail'>
                         <img src={test} alt='장소관련 사진' />
@@ -246,7 +252,7 @@ function ViewPlanDetail() {
             <div className='vPlanDetailBtnWrapper'>
                 <div className='vPlanDetailBtn' onClick={() => saveConfirm()}>
                     <FontAwesomeIcon className='icon' size='2xl' icon={faBookmark} style={{ color: "#c9c9c9" }} />
-                    <span>일정 저장</span>
+                    <span>999+</span>
                 </div>
                 <div className='vPlanDetailBtn' onClick={() => go('/planUpdate')}>
                     <FontAwesomeIcon className='icon' size='2xl' icon={faCalendarDay} style={{ color: "#c9c9c9", }} />
@@ -299,5 +305,19 @@ const PlanInfo = styled.div`
     justify-content: space-evenly;
     align-items: center;
     margin: 1vh 0;
+`;
+
+const PlanTitle = styled.div`
+    margin-top: 7vh;
+`;
+
+const RecommTitle = styled.span`
+    display: block;
+    text-align: left;
+    padding: 0vh 2vw;
+    margin-top: 2vh;
+
+    font-family: 'Pretendart-ExtraBold';
+    font-size: 1rem;
 `;
 export default ViewPlanDetail;

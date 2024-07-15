@@ -15,39 +15,23 @@ const ProfileUpdate = () => {
     return (
     <>
         <Form form={form} initialValues={{
-                a: 'aaa',
+                a: '',
                 b: [],
+                userId: '도레미',
             }} footer={<Button block color='primary' onClick={onSubmit} size='large'>
                 변경하기
             </Button>}>
-            <Form.Item name='a' label='닉네임'>
-            <Input placeholder='请输入'/>
+            <Form.Item name='userId' label='닉네임' >
+            <Input placeholder='닉네임'/>
             </Form.Item>
             <Form.Item name='a' label='이름'>
-            <Input placeholder='请输入' disabled/>
+            <Input placeholder='이름' disabled/>
             </Form.Item>
-            <Form.Item name='a' label='생년월일'>
-            <Input placeholder='请输入' disabled/>
-            </Form.Item>
-            <Form.Item name='b' label='字段B' required>
-            <Checkbox.Group>
-                <Space direction='vertical'>
-                <Checkbox id='value1' value='1'>选项1</Checkbox>
-                <Checkbox id='value2' value='2'>选项2</Checkbox>
-                <Checkbox id='value3' value='3' disabled>
-                    选项3
-                </Checkbox>
-                </Space>
-            </Checkbox.Group>
-            </Form.Item>
-            <Form.Item label='表单联动-字段B' shouldUpdate={(prevValues, curValues) => prevValues.b !== curValues.b}>
-            {({ getFieldValue }) => JSON.stringify(getFieldValue('b'))}
+            <Form.Item name='birth' label='생년월일'>
+            <Input placeholder='미입력' disabled/>
             </Form.Item>
             <MbtiPickerInputItem />
         </Form>
-
-        {/* <RefDemo /> */}
-
     </>
     );
 };

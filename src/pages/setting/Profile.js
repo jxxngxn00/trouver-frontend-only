@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Menu from '../components/Menu';
 import TopBtnBar from '../components/TopBtnBar';
 
 import styled from 'styled-components';
-import { Divider, SideBar } from 'antd-mobile';
+import { Divider, SideBar, Swiper, Tabs } from 'antd-mobile';
 
 import profile from '../../images/default_profile.png';
 
 import ProfileUpdate from '../components/setting/ProfileUpdate';
-import Review from '../components/setting/Review';
+import {MyReview} from '../components/Review';
 import Plan from '../components/setting/Plan';
 import MySaved from '../components/setting/MySaved';
 
@@ -19,25 +19,23 @@ const tabs = [
     },
     { key: 'key1',
         title : '내가 쓴 리뷰',
-        div : (<Review/>),
+        div : (<MyReview/>),
     },
     { key: 'key2',
         title : '나의 일정',
         div : (<Plan/>),
     },
     { key: 'key3',
-        title : 'My',
+        title : '책갈피',
         div : (<MySaved/>),
     },
 ]
 
 const Profile = () => {
     const user_name = '도레미';
-    const [activeKey, setActiveKey] = useState('key0');
+    const swiperRef = useRef(null);
+    const [activeIndex, setActiveIndex] = useState(0);
 
-    // useEffect(()=> {
-    //     console.log(activeKey);
-    // });
     return (
         <>
             <Menu/>
@@ -54,24 +52,26 @@ const Profile = () => {
                 </ProfileDiv>
                 <Divider />
                 <ContentDiv className='contentDiv'>
-                    <div className='side'>
-                        <SideBar 
-                            style={{ '--width': '30vw' }}
-                            activeKey={activeKey}
-                            onChange={setActiveKey}
-                        >
-                            {tabs.map(item => (
-                                <SideBar.Item key={item.key} title={item.title}/>
-                            ))}
-                        </SideBar>
-                    </div>
-                    <div className='main'>
-                    {tabs.map((item, idx) => (
-                        <div key={idx} className={activeKey === item.key ? 'content active' : 'content'}>
-                            {item.div}
-                        </div>
+                    <Tabs className='tabs' activeKey={tabs[activeIndex].key} onChange={key => {
+                        var _a;
+                        const index = tabs.findIndex(item => item.key == key);
+                        setActiveIndex(index);
+                        (_a = swiperRef.current) === null || _a === void 0 ? void 0 : _a.swipeTo(index);
+                    }}>
+                        {tabs.map(item => (
+                            <Tabs.Tab title={item.title} key={item.key}/>
                         ))}
-                    </div>
+                    </Tabs>
+                    <Swiper direction='horizontal' loop indicator={() => null} ref={swiperRef} defaultIndex={activeIndex}
+                        onIndexChange={index => setActiveIndex(index) }>
+                        {tabs.map((item, idx) => (
+                            <Swiper.Item key={idx}>
+                                <div className='content'>
+                                    {item.div}
+                                </div>
+                            </Swiper.Item>
+                            ))}
+                    </Swiper>
                 </ContentDiv>
             </div>
         </>
@@ -89,10 +89,7 @@ const ProfileDiv = styled.div`
     padding: 7vh 0vw 3vh;
     gap: 3vw;
 
-    position: sticky;
-    top: 0;
-    left: 0;
-    z-index: 1234567;
+
     & .imgWrapper{ 
         position: relative;
         width : 35vw; 
@@ -120,20 +117,26 @@ const ProfileDiv = styled.div`
 
 const ContentDiv = styled.div`
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
 
-    & .side { flex:none; }
-    & .main { flex:auto; }
     & .content {
+        width: 100vw;
         height: 100%;
-        display: none;
+        display: flex;
         justify-content: center;
         text-align: left;
         flex-direction: column;
         align-items: center;
         font-size: 2rem;
     }
-    & .active { display:flex !important; }
+
+    & .tabs {
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: 1234567;
+    }
 `;
 export default Profile;

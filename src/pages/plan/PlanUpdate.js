@@ -14,7 +14,20 @@ import { CheckCircleFilled, ExclamationCircleFilled } from '@ant-design/icons';
 
 import mapPicture from '../../images/map.png'
 import SearchPlace from '../components/updateplan/SearchPlace';
-// import { text } from '@fortawesome/fontawesome-svg-core';
+import Menu from '../components/Menu';
+
+// 날짜 사이의 날짜 배열 생성
+const getDatesInRange = (startDate, endDate) => {
+    const date = new Date(startDate.getTime());
+    const dates = [];
+
+    while (date <= endDate) {
+        dates.push(new Date(date));
+        date.setDate(date.getDate() + 1);
+    }
+
+    return dates;
+};
 
 const placeArray = [{
     id: 0,
@@ -35,7 +48,14 @@ function PlanUpdate() {
     const [visibleSearchPlace, setVisibleSearchPlace] = useState(false);
 
     const [valFromCal, setValFromCal] = useState('');
-    const handleValueChange = (value) => { setValFromCal(value) }
+    const [dateRange, setDateRange] = useState([]);
+    const handleValueChange = (value) => { 
+        setValFromCal(value); 
+
+        const [start, end] = value.split('~').map(date => new Date(date));
+        const dates = getDatesInRange(start, end);
+        setDateRange(dates);
+    }
 
     useEffect(()=> {
         setList(placeArray);
@@ -98,9 +118,15 @@ function PlanUpdate() {
     return (
         <div className='homeBgDiv viewDetailWrapper'>
             <TopBtnBar/>
+            <Menu/>
             <div className='planTitle'>
                 <PlanTitle type='text' defaultValue='혼자 떠나는 제주여행'></PlanTitle>
             </div>
+            <PlanInfo>
+                <div className='planDate'>
+                    예산 : ₩ 250,000 ~ ₩ 750,000
+                </div>
+            </PlanInfo>
             <PlanDate>
                 {valFromCal? valFromCal : '날짜가 설정되지 않았습니다.'}
                 <DateBtn className='dateBtn' onClick={() => setVisibleCalendar(true)}><FontAwesomeIcon icon={faCalendar}/></DateBtn>
@@ -120,75 +146,19 @@ function PlanUpdate() {
             {/* N일차 라디오 버튼 */}
             <div className='dateRadioBtn'>
                 <div className='dateRadioBoxWrapper'>
-                    <InfoRadioBoxInput
-                        type="radio"
-                        id='day1'
-                        name='day'
-                        value='1'
-                    />
-                    <InfoCheckBoxLabel htmlFor='day1'>
-                        1일차
-                    </InfoCheckBoxLabel>
-
-                    <InfoRadioBoxInput
-                        type="radio"
-                        id='day2'
-                        name='day'
-                        value='2'
-                    />
-                    <InfoCheckBoxLabel htmlFor='day2'>
-                        2일차
-                    </InfoCheckBoxLabel>
-
-                    <InfoRadioBoxInput
-                        type="radio"
-                        id='day3'
-                        name='day'
-                        value='2'
-                    />
-                    <InfoCheckBoxLabel htmlFor='day3'>
-                        3일차
-                    </InfoCheckBoxLabel>
-
-                    <InfoRadioBoxInput
-                        type="radio"
-                        id='day4'
-                        name='day'
-                        value='2'
-                    />
-                    <InfoCheckBoxLabel htmlFor='day4'>
-                        4일차
-                    </InfoCheckBoxLabel>
-
-                    <InfoRadioBoxInput
-                        type="radio"
-                        id='day5'
-                        name='day'
-                        value='2'
-                    />
-                    <InfoCheckBoxLabel htmlFor='day5'>
-                        5일차
-                    </InfoCheckBoxLabel>
-                    
-                    <InfoRadioBoxInput
-                        type="radio"
-                        id='day6'
-                        name='day'
-                        value='2'
-                    />
-                    <InfoCheckBoxLabel htmlFor='day6'>
-                        6일차
-                    </InfoCheckBoxLabel>
-
-                    <InfoRadioBoxInput
-                        type="radio"
-                        id='day7'
-                        name='day'
-                        value='2'
-                    />
-                    <InfoCheckBoxLabel htmlFor='day7'>
-                        7일차
-                    </InfoCheckBoxLabel>
+                {dateRange.map((date, index) => (
+                        <React.Fragment key={index}>
+                            <InfoRadioBoxInput
+                                type="radio"
+                                id={`day${index + 1}`}
+                                name='day'
+                                value={index + 1}
+                            />
+                            <InfoCheckBoxLabel htmlFor={`day${index + 1}`}>
+                                {index + 1}일차
+                            </InfoCheckBoxLabel>
+                        </React.Fragment>
+                    ))}
                 </div>
             </div>
 
@@ -240,7 +210,16 @@ function PlanUpdate() {
     );
 }
 
-// const icon = '<a href="https://www.flaticon.com/free-animated-icons/summer" title="summer animated icons">Summer animated icons created by Freepik - Flaticon</a>'
+const PlanInfo = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 1rem;
+    width: 94vw;
+    padding: 0vh 1.5vw;
+    margin: 1.5vh 0vw;
+`;
+
 const InfoRadioBoxInput = styled.input`
     position: relative;
     width: 0px;
@@ -288,6 +267,7 @@ const PlanTitle = styled.input`
     border-radius: 30px;
     border: none;
     box-shadow: 0px 0px 27px -9px rgba(130,130,130,0.75);
+    margin-top: 7vh;
 `;
 
 const DateBtn = styled.button`
@@ -301,13 +281,13 @@ const DateBtn = styled.button`
 `;
 
 const PlanDate = styled.div`
-    font-size: 1.15rem;
-    width: 94vw;
-    padding: 0vh 3vw;
-    margin: 2vh 0vw;
+    font-size: 1rem;
+    width: 89vw;
+    padding: 0vh 0vw 0vh 3vw;
+    margin: 1.5vh 2.3vw;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
 `;
 
 

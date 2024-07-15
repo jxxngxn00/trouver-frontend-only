@@ -2,8 +2,6 @@
   "name": "trouver",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jxxngxn00.github.io/trouver-frontend-only",
-  "proxy": "http://localhost:5000/",
   "dependencies": {
     "@ant-design/icons": "^5.3.7",
     "@babel/core": "^7.24.7",
@@ -19,7 +17,6 @@
     "ajv-keywords": "^5.1.0",
     "antd": "^5.19.0",
     "antd-mobile": "^5.37.1",
-    "antd-mobile-v2": "^2.3.4",
     "axios": "^1.7.2",
     "bcrypt": "^5.1.1",
     "concurrently": "^8.2.2",
@@ -39,7 +36,6 @@
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.24.1",
     "react-scripts": "^5.0.1",
-    "react-transition-group": "^4.4.5",
     "react-useanimations": "^2.10.0",
     "styled-components": "^4.4.1"
   },

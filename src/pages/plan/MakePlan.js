@@ -49,7 +49,7 @@ function MakePlan() {
                         <button className="mPlanBtn stage3" onClick={() => {setState(state-1)}}>
                             <span className="text">이전</span>
                         </button>
-                        <button className="mPlanBtn stage3" onClick={() => {navigate('/viewplandetail')}}>
+                        <button className="mPlanBtn stage3" onClick={() => {navigate('/planUpdate')}}>
                             <span className="text">다음</span>
                         </button>
                     </div>

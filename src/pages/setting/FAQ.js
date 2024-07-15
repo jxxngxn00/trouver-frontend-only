@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Collapse } from 'antd-mobile';
 import React from 'react';
 import styled from 'styled-components';
+import TopBtnBar from '../components/TopBtnBar';
 const items = [
     {
         title: '질문 내용1',
@@ -31,6 +32,7 @@ const FAQ = () => {
     // console.log(items);
     return (
         <div className='homeBgDiv ViewPlanBgDiv'>
+            <TopBtnBar/>
             <CollapseWrapper>
                 <Title>FAQ</Title>
                 <Collapse className='collapse' defaultActiveKey={['0']}
@@ -60,6 +62,7 @@ const Title = styled.span`
 `;
 
 const CollapseWrapper = styled.div`
+    margin-top: 10vh;
     width: 100vw;
     text-align: left;
     & .icon { margin-right : 3vw ;}
